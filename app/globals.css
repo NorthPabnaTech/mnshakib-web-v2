@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====================================================
+   v2 Design tokens — CBC-inspired olive + mint
+   ==================================================== */
+:root {
+  --bg: #15181c;
+  --bg-elev: #1c2024;
+  --bg-elev-2: #252a30;
+  --bg-deep: #0e1013;
+  --line: #2a2f36;
+  --line-soft: #1f242a;
+  --text: #efefe8;
+  --text-mute: #9a9a92;
+  --text-dim: #5e5e55;
+  --accent: #a4e4b8;
+  --accent-soft: #7db48e;
+  --accent-deep: #5c8e6e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), -apple-system, system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: auto;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Italic mint accent — the CBC signature move
+   Used inline inside headlines: "Get your brand back in the <span class="ital">black</span>" */
+.ital {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+
+/* Page fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Drag cursor (used on draggable carousels) */
+.cursor-drag {
+  cursor: grab;
+}
+.cursor-drag:active {
+  cursor: grabbing;
+}
+
+/* Reveal on scroll (Tailwind animations handle it,
+   but this is the IntersectionObserver target) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom scrollbar — minimal, mint-tinted */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-deep);
+}
